@@ -1,0 +1,10 @@
+/db.sqlite3
+/log/
+.idea/
+/temp_Test.py
+__pycache__
+**/__pycache__/
+**/.idea/
+.DS_Store
+/.env
+/venv_recipe/
