@@ -1,0 +1,24 @@
+
+{#<div class="container">#}
+{#    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">#}
+{#      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">#}
+{#        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>#}
+{#          <img src="{% static 'images/logo.png' %}" alt="logo">#}
+{#        <span class="fs-4">Учет сотрудников организации</span>#}
+{##}
+{#      </a>#}
+{##}
+{#      <ul class="nav nav-pills">#}
+{#        <li class="nav-item"><a href="{% url 'mainapp:home' %}" class="nav-link active" aria-current="page">В начало</a></li>#}
+{#        <li class="nav-item"><a href="{% url 'admin:index' %}" class="nav-link">Админка</a></li>#}
+{#        <li class="nav-item"><a href="{% url 'mainapp:login' %}" class="nav-link">Вход</a></li>#}
+{#      </ul>#}
+{#    </header>#}
+{#  </div>#}
+
+
+<hr>
+<a href="{% url 'mainapp:home' %}" class="btn btn-primary my-2">В начало</a>
+<a href="#" class="btn btn-primary my-2">Все рецепты</a>
+<a href="{% url 'admin:index' %}" class="btn btn-secondary my-2">Админка</a>
+<hr>
