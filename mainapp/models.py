@@ -35,12 +35,12 @@ class Recipe(models.Model):
         FileExtensionValidator(allowed_extensions=('png', 'jpg', 'webp', 'jpeg', 'gif'))])
     author = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name='автор')
 
-    category = models.ManyToManyField(Category, related_name='recipes')
+    category = models.ManyToManyField(Category)
     is_active = models.BooleanField(default=True, verbose_name='Активен')
     objects = Manager()
 
     def __str__(self):
-        return f"{self.title}. {self.category.title}"
+        return f"{self.title}"
 
     class Meta:
         verbose_name = 'рецепт'
@@ -51,3 +51,6 @@ class Recipe(models.Model):
         return Recipe.objects.filter(is_active=True).order_by('category', 'title')
 
 
+class CategoryRecipe(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)

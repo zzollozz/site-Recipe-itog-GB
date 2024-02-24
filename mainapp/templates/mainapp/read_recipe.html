@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block menu %}
+    {% include 'mainapp/includes/inc_header_menu.html' %}
+{% endblock menu %}
+
+{% block content %}
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">{{ recipe.title }}</h1>
+                <p>
+                    {% include 'mainapp/includes/inc_main_menu.html' %}
+                </p>
+            </div>
+        </div>
+    </section>
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="d-flex justify-content-center">
+            {% if recipe.img %}
+                <img class="bd-placeholder-img " height="500" width="50%" src="{{ recipe.img.url }}"
+                     alt="">
+            {% else %}
+                <img class="bd-placeholder-img " height="500" width="50%"
+                     src="{% static 'img/salati_prev_cat.jpeg' %}">
+            {% endif %}
+            </div><br>
+            <div class="col">
+{#                <h1 class="d-flex justify-content-center">{{ recipe.title }}</h1><br>#}
+                <p>{{ recipe.description }}</p>
+                <p>{{ recipe.cooking_steps }}</p>
+
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+{% endblock content %}

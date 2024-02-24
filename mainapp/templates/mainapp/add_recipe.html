@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block menu %}
+    {% include 'mainapp/includes/inc_header_menu.html' %}
+{% endblock menu %}
+
+
+{% block content %}
+
+    <main>
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Добавление нового рецепта</h1>
+{#                    <p class="lead text-body-secondary">#}
+{#                        Над этим вопросом ежедневно задумываются миллионы людей по всему миру.#}
+{#                        Надеюсь, рецепты моего кулинарного сайта помогут решить этот вопрос вам сегодня.#}
+{#                        На сайте вы найдете рецепты, праздничные и повседневные, с подробными инструкциями и пошаговыми#}
+{#                        фотографиями.</p>#}
+{#                    <p>#}
+                        {% include 'mainapp/includes/inc_main_menu.html' %}
+                    </p>
+                </div>
+            </div>
+        </section>
+        <div class="mb-5 container">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}<br>
+                <input type="submit" value="Добавить">
+            </form>
+        </div>
+
+
+    </main>
+
+
+{% endblock content %}
