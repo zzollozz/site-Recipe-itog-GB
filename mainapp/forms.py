@@ -3,7 +3,7 @@ from django.forms import ModelForm, TextInput, Textarea
 from mainapp.models import Category, Recipe
 
 
-class CreateRacipe(ModelForm):
+class CreateRacipeForm(ModelForm):
     class Meta:
         model = Recipe
         fields = ['title', 'description', 'cooking_steps', 'cooking_time', 'img', 'author', 'category']

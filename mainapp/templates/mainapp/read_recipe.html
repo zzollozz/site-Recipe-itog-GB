@@ -13,6 +13,8 @@
                 <h1 class="fw-light">{{ recipe.title }}</h1>
                 <p>
                     {% include 'mainapp/includes/inc_main_menu.html' %}
+                    <a class="btn btn-outline-success my-2" style="text-decoration: none;" href="{% url 'mainapp:update_recipe' recipe.id %}">Редактировать</a>
+                    <a class="btn btn-outline-danger my-2" style="text-decoration: none;" href="#">Удалить</a>
                 </p>
             </div>
         </div>
@@ -20,6 +22,7 @@
     <div class="album py-5 bg-body-tertiary">
         <div class="container">
             <div class="d-flex justify-content-center">
+
             {% if recipe.img %}
                 <img class="bd-placeholder-img " height="500" width="50%" src="{{ recipe.img.url }}"
                      alt="">
