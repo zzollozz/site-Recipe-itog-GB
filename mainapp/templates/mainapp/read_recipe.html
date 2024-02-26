@@ -13,8 +13,10 @@
                 <h1 class="fw-light">{{ recipe.title }}</h1>
                 <p>
                     {% include 'mainapp/includes/inc_main_menu.html' %}
+                    {% if user.is_superuser %}
                     <a class="btn btn-outline-success my-2" style="text-decoration: none;" href="{% url 'mainapp:update_recipe' recipe.id %}">Редактировать</a>
                     <a class="btn btn-outline-danger my-2" style="text-decoration: none;" href="#">Удалить</a>
+                    {% endif %}
                 </p>
             </div>
         </div>
@@ -28,13 +30,17 @@
                      alt="">
             {% else %}
                 <img class="bd-placeholder-img " height="500" width="50%"
-                     src="{% static 'img/salati_prev_cat.jpeg' %}">
+                     src="{% static 'img/foto_product_default.jpg' %}">
             {% endif %}
             </div><br>
             <div class="col">
 {#                <h1 class="d-flex justify-content-center">{{ recipe.title }}</h1><br>#}
-                <p>{{ recipe.description }}</p>
-                <p>{{ recipe.cooking_steps }}</p>
+                <h6>{{ recipe.description }}</h6>
+                <h5>Приготовление</h5>
+                {% for row_step in cooking_steps_list %}
+                    <p>{{ row_step }}</p>
+                {% endfor %}
+                <h6>Автор рецепта: {{ recipe.author }}</h6>
 
 
             </div>

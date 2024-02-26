@@ -26,12 +26,12 @@ def add_recipe(request):
                 cooking_steps=recipe_form.cleaned_data['cooking_steps'],
                 cooking_time=recipe_form.cleaned_data['cooking_time'],
                 img=recipe_form.cleaned_data['img'],
-                author=recipe_form.cleaned_data['author'],
+                author=request.user,
             )
 
             new_recipe.save()
             new_recipe.category.add(recipe_form.cleaned_data['category'].values()[0].get('id'))
-            return redirect('mainapp:home')
+        return redirect('mainapp:home')
 
     context = {
         'title': 'Добавление рецепта',
@@ -44,6 +44,7 @@ def read_recipe(request, pk: int):
     recipe = get_object_or_404(Recipe, pk=pk)
     context = {
         'title': 'Рецепт название',
+        'cooking_steps_list': recipe.cooking_steps.split('\r'),
         'recipe': recipe
 
     }
@@ -58,7 +59,7 @@ def update_recipe(request, pk: int):
         'cooking_steps': update_item.cooking_steps,
         'cooking_time': update_item.cooking_time,
         'img': update_item.img,
-        'author': update_item.author,
+        'author': request.user,
         # 'category': update_item.category,
         'is_active': update_item.is_active,
     }

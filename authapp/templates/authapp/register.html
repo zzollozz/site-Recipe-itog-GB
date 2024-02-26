@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main class="form-signin w-50 m-auto">
+        <form class="form_horizontal col-10" method="post" action="{% url 'authapp:register' %}"
+              enctype="multipart/form-data">
+            <h1 class="h3 mb-3 fw-normal d-flex justify-content-center">Регистрация</h1>
+            <div class="form-floating">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <button class="btn btn-outline-primary w-100 py-2 mb-2 mt-2" type="submit">Зарегистрироваться</button>
+            <a class="btn btn-outline-primary w-100 py-2 mb-2 mt-2" href="{% url 'authapp:login' %}" style="width: 100%">Войти</a>
+        </form>
+    </main>
+{% endblock %}

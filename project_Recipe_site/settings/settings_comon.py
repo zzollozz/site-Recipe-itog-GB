@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp',
+    'authapp',
 ]
 
 MIDDLEWARE = [
@@ -148,6 +149,11 @@ LOGGING = {
             'level': 'INFO',
         },
         'mainapp': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'authapp': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': True,
