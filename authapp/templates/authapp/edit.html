@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block menu %}
+    {% include 'mainapp/includes/inc_header_menu.html' %}
+{% endblock menu %}
+
+
+{% block content %}
+
+    <main class="form-signin w-50 m-auto">
+        <form class="form-horizontal" action="{% url 'authapp:edit' %}" method="post"
+              enctype="multipart/form-data">
+            <h1 class="h3 mb-3 fw-normal d-flex justify-content-center">Личный кабинет</h1>
+            <hr>
+            <div class="form-floating">
+                {% csrf_token %}
+                {{ edit_form.as_p }}
+            </div>
+            <input class="btn btn-outline-primary w-100 py-2 mb-2 mt-2" type="submit" value="Сохранить"></form>
+        <a href="{% url 'mainapp:home' %}" class="btn btn-outline-primary w-100 py-2 mb-2 mt-2">Вернуться на сайт</a>
+        <a href="{% url 'authapp:user_recipes' %}" class="btn btn-outline-primary w-100 py-2 mb-2 mt-2">Мои рецепты</a>
+    </main>
+
+{% endblock content %}

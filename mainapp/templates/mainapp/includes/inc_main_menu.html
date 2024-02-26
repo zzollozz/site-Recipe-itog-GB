@@ -5,7 +5,7 @@
 {% else %}
     <a href="{% url 'mainapp:add_recipe' %}" class="btn btn-outline-primary my-2">Добавить рецепт</a>
     <a href="{% url 'authapp:logout' %}" class="btn btn-outline-primary my-2">Выход</a>
-    <a href="#" class="btn btn-outline-secondary my-2">
+    <a href="{% url 'authapp:edit' %}" class="btn btn-outline-secondary my-2">
         {{ user.username|default:'Пользователь' }}
     </a>
 {% endif %}

@@ -1,13 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.urls import reverse
 
 from mainapp.forms import CreateRacipeForm
 from mainapp.models import Recipe, Category
 
 
 def index(request):
-    recipes = Recipe.objects.all()
-
-
+    recipes = Recipe.objects.all()[:5]
     context = {
         'title': 'Главная страница',
         'recipes': recipes
@@ -83,3 +82,8 @@ def update_recipe(request, pk: int):
     }
     return render(request, 'mainapp/update_recipe.html', context)
 
+
+def delete_recipe(request, pk: int):
+    _ = get_object_or_404(Recipe, pk=pk)
+    _.delete()
+    return HttpResponseRedirect(reverse('authapp:edit'))

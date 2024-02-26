@@ -2,7 +2,8 @@ from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib import auth
 from django.urls import reverse
 
-from authapp.forms import UserLoginForm, UserRegisterForm
+from authapp.forms import UserLoginForm, UserRegisterForm, UserEditForm
+from mainapp.models import Recipe
 
 
 def login(request):
@@ -43,3 +44,30 @@ def register(request):
         'title': 'Регистрация'
     }
     return render(request, 'authapp/register.html', context)
+
+
+def edit(request):
+    if request.method == 'POST':
+        edit_form = UserEditForm(request.POST,
+                                 request.FILES,
+                                 instance=request.user)
+        if edit_form.is_valid():
+            edit_form.save()
+        return HttpResponseRedirect(reverse('authapp:edit'))
+    else:
+        edit_form = UserEditForm(instance=request.user)
+        content = {
+            'title': 'Личный кабинет',
+            'edit_form': edit_form
+        }
+        return render(request, 'authapp/edit.html', content)
+
+def user_read_recipes(request):
+    recipes = Recipe.objects.filter(author=request.user)
+
+    context = {
+        'title': 'мой рецепты',
+        'flag': True,
+        'recipes': recipes
+    }
+    return render(request, 'authapp/read_user_recipes.html', context=context)

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block menu %}
+    {% include 'mainapp/includes/inc_header_menu.html' %}
+{% endblock menu %}
+
+
+{% block content %}
+    <main>
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Мой рецепты</h1>
+                    {% include 'mainapp/includes/inc_main_menu.html' %}
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    {% for recipe in recipes %}
+                        <div class="col">
+
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    {% if recipe.img %}
+                                        <img class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                             src="{{ recipe.img.url }}" alt="">
+                                    {% else %}
+                                        <img class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                             src="{% static 'img/foto_product_default.jpg' %}">
+                                    {% endif %}
+                                    <div>
+                                        <a href="{% url 'mainapp:read_recipe' recipe.id %}"
+                                           style="text-decoration: none;"><h4 class="card-text">{{ recipe.title }}</h4>
+                                        </a>
+
+                                        <a class="btn btn-outline-success my-2" style="text-decoration: none;"
+                                           href="{% url 'mainapp:update_recipe' recipe.id %}">Редактировать</a>
+                                        <a class="btn btn-outline-danger my-2" style="text-decoration: none;"
+                                           href="{% url 'mainapp:delete_recipe' recipe.id %}">Удалить</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+{% endblock %}
